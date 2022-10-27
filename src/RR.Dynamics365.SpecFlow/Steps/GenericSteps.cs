@@ -10,9 +10,13 @@ namespace RR.Dynamics365.SpecFlow.Steps
     [Binding]
     public class GenericSteps
     {
+        private readonly ScenarioContext _scenarioContext;
+        public GenericSteps(ScenarioContext scenarioContext) => _scenarioContext = scenarioContext;
+
         [Given(@"I have an existing '([^\\s]+)' with primary name '([^\\s]+)'")]
         public void GivenExistingEntity(string entityLogicalName, string primaryName)
         {
+
         }
     }
 }

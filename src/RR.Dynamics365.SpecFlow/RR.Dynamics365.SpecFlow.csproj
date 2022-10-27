@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="lnetrebskii.Dynamics365.UIAutomation.net6.Api" Version="9.0.0.1" />
+    <PackageReference Include="SpecFlow" Version="3.9.74" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
+  </ItemGroup>
+
 </Project>

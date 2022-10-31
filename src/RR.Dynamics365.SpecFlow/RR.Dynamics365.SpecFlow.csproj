@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackageId>RentReady.Dynamics365.SpecFlow</PackageId>
+	<IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

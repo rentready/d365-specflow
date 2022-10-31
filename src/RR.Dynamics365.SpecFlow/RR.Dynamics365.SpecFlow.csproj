@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="lnetrebskii.Dynamics365.UIAutomation.net6.Api" Version="9.0.0.1" />
-    <PackageReference Include="RentReady.Dynamics365.UIAutomation.net6.Api" Version="9.2.22023.129-rentready.1" />
+	<PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+    <PackageReference Include="RentReady.Vermaat.Crm.Specflow" Version="3.3.40-rentready.7" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
     <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
   </ItemGroup>

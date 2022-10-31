@@ -10,6 +10,8 @@
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
 	  <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
 	  <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
+	  <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+	  <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="107.0.5304.6200" />
 	  <PackageReference Include="xunit" Version="2.4.2" />
 	  <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
 	    <PrivateAssets>all</PrivateAssets>
@@ -18,12 +20,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Drivers\" />
+    <Folder Include="Features\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RR.Dynamics365.SpecFlow\RR.Dynamics365.SpecFlow.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Drivers\" />
-    <Folder Include="Features\" />
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DefaultData.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LocalizedTexts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="secrets.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

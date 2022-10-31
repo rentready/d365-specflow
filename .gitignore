@@ -1,3 +1,4 @@
 .vs
 bin
 obj
+/src/RR.Dynamics365.SpecFlow.Playground/secrets.json

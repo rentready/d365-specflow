@@ -99,7 +99,16 @@ namespace RR.Dynamics365.SpecFlow.Playground.Features
             {
                 this.ScenarioStart();
 #line 3
-  testRunner.Given("I have an existing \'account\' with primary name \'Hello world\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("the current logged in user named MyUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "name",
+                            "John Snow"});
+#line 4
+  testRunner.Given("a bookableresource named John exists with the following values", ((string)(null)), table1, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,11 +1,4 @@
-﻿using Azure;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Xrm.Sdk;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xrm.Sdk;
 using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
@@ -26,6 +19,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
 
         #region Given
 
+        [When(@"I wait an existing ([^\s]+) named ([^\s]+) with the following values is available within ([0-9]+) seconds")]
         [Given(@"an existing ([^\s]+) named ([^\s]+) with the following values is available within ([0-9]+) seconds")]
         public void GivenExistingWithValues(string entityName, string alias, int seconds, Table criteria)
         {
@@ -37,6 +31,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
 
         #region Then
 
+        [When(@"I wait within ([0-9]+) seconds ([^\s]+) has the following values")]
         [Then(@"within ([0-9]+) seconds ([^\s]+) has the following values")]
         public void ThenAliasHasValues(int seconds, string alias, Table criteria)
         {
@@ -46,6 +41,8 @@ namespace RR.Dynamics365.SpecFlow.Steps
             TryUntil(new AssertCrmRecordCommand(_crmContext, aliasRef, criteria), seconds);
         }
 
+        [When(@"I wait within ([0-9]+) seconds a ([^\s]+) exists with the following values")]
+        [When(@"I wait within ([0-9]+) seconds an ([^\s]+) exists with the following values")]
         [Then(@"within ([0-9]+) seconds a ([^\s]+) exists with the following values")]
         [Then(@"within ([0-9]+) seconds an ([^\s]+) exists with the following values")]
         public Entity ThenRecordExists(int seconds, string entityName, Table criteria)
@@ -53,12 +50,14 @@ namespace RR.Dynamics365.SpecFlow.Steps
             return ThenRecordCountExists(seconds, 1, entityName, criteria)[0];
         }
 
+        [When(@"I esure within ([0-9]+) seconds no ([^\s]+) exists with the following values")]
         [Then(@"within ([0-9]+) seconds no ([^\s]+) exists with the following values")]
         public void ThenNoRecordExists(int seconds, string entityName, Table criteria)
         {
             ThenRecordCountExists(seconds, 0, entityName, criteria);
         }
 
+        [When(@"I ensure within ([0-9]+) seconds ([0-9]+) ([^\s]+) records exist with the following values")]
         [Then(@"within ([0-9]+) seconds ([0-9]+) ([^\s]+) records exist with the following values")]
         public DataCollection<Entity> ThenRecordCountExists(int seconds, int amount, string entityName, Table criteria)
         {

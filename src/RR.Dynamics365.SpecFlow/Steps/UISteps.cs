@@ -27,6 +27,12 @@ namespace RR.Dynamics365.SpecFlow.Steps
             _seleniumContext = seleniumContext;
         }
 
+        [When(@"I click button ""(.*)""")]
+        public void WhenIClickButton(string buttonName)
+        {
+            _seleniumContext.GetBrowser().App.Client.ClickCommand(buttonName);
+        }
+
         [Then("(.*)'s form has the following form state")]
         public void ThenFieldsAreVisibleOnForm(string alias, Table table)
         {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
-using System;
 using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
+using GetRecordsCommand = RR.Dynamics365.SpecFlow.Commands.GetRecordsCommand;
 
 namespace RR.Dynamics365.SpecFlow.Steps
 {
@@ -55,6 +54,22 @@ namespace RR.Dynamics365.SpecFlow.Steps
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
             _crmContext.CommandProcessor.Execute(new CreateRelatedRecordCommand(_crmContext, _seleniumContext, entityName, criteria, childAlias, parentAlias));
+        }
+
+        private const int MAX_RECORDS_TO_DELETE = 5;
+
+        [Given(@"entities ([^\s]+) with the following values are deleted")]
+        public void GivenDeleteRelatedEntities(string entityName, Table criteria)
+        {
+            _crmContext.TableConverter.ConvertTable(entityName, criteria);
+            var records = _crmContext.CommandProcessor.Execute(new GetRecordsCommand(_crmContext, entityName, criteria));
+
+            Assert.IsFalse(records.Count > MAX_RECORDS_TO_DELETE, $"There are {records.Count} entities while the delete operation is constrained to at most {MAX_RECORDS_TO_DELETE} to prevent unintentional mass delete operation because of invalid criteria.");
+
+            foreach (var record in records)
+            {
+                _crmContext.CommandProcessor.Execute(new Commands.DeleteRecordCommand(_crmContext, record.ToEntityReference()));
+            }
         }
 
         #endregion

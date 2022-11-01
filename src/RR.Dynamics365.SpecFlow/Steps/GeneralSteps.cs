@@ -15,12 +15,14 @@ namespace RR.Dynamics365.SpecFlow.Steps
         private readonly CrmTestingContext _crmContext;
         private readonly SeleniumTestingContext _seleniumContext;
         private readonly IObjectContainer _objectContainer;
+        private readonly CommandAction _action;
 
-        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
+        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer, ScenarioContext scenarioContext)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;
             _objectContainer = objectContainer;
+            _action = scenarioContext.StepContext.StepInfo.StepDefinitionType == TechTalk.SpecFlow.Bindings.StepDefinitionType.Given ? CommandAction.ForceApi : CommandAction.Default;
         }
 
 
@@ -41,14 +43,14 @@ namespace RR.Dynamics365.SpecFlow.Steps
         public void GivenEntityWithValues(string entityName, string alias, Table criteria)
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
-            _crmContext.CommandProcessor.Execute(new CreateRecordCommand(_crmContext, _seleniumContext, entityName, criteria, alias));
+            _crmContext.CommandProcessor.Execute(new CreateRecordCommand(_crmContext, _seleniumContext, entityName, criteria, alias), _action);
         }
 
         [Given(@"(.*) has the process stage (.*)")]
         [When(@"I change the process stage of (.*) to (.*)")]
         public void SetProcessStage(string alias, string stageName)
         {
-            _crmContext.CommandProcessor.Execute(new MoveToBusinessProcessStageCommand(_crmContext, alias, stageName));
+            _crmContext.CommandProcessor.Execute(new MoveToBusinessProcessStageCommand(_crmContext, alias, stageName), _action);
         }
 
         [Given(@"a related ([^\s]+) from (.*) named (.*) created with the following values")]
@@ -56,7 +58,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
         public void GivenRelatedEntityWithValues(string entityName, string parentAlias, string childAlias, Table criteria)
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
-            _crmContext.CommandProcessor.Execute(new CreateRelatedRecordCommand(_crmContext, _seleniumContext, entityName, criteria, childAlias, parentAlias));
+            _crmContext.CommandProcessor.Execute(new CreateRelatedRecordCommand(_crmContext, _seleniumContext, entityName, criteria, childAlias, parentAlias), _action);
         }
 
         private const int MAX_RECORDS_TO_DELETE = 5;

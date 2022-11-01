@@ -8,7 +8,7 @@ namespace RR.Dynamics365.SpecFlow.Commands
     {
         private readonly EntityReference _toDelete;
 
-        public DeleteRecordCommand(CrmTestingContext crmContext, EntityReference entity)
+        public DeleteRecordCommand(ICrmTestingContext crmContext, EntityReference entity)
             : base(crmContext)
         {
             _toDelete = entity;

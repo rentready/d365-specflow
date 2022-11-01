@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BoDi;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
@@ -13,11 +14,13 @@ namespace RR.Dynamics365.SpecFlow.Steps
     {
         private readonly CrmTestingContext _crmContext;
         private readonly SeleniumTestingContext _seleniumContext;
+        private readonly IObjectContainer _objectContainer;
 
-        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext)
+        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;
+            _objectContainer = objectContainer;
         }
 
 
@@ -62,7 +65,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
         public void GivenDeleteRelatedEntities(string entityName, Table criteria)
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
-            var records = _crmContext.CommandProcessor.Execute(new GetRecordsCommand(_crmContext, entityName, criteria));
+            var records = _crmContext.CommandProcessor.Execute(new GetRecordsCommand(_crmContext, entityName, criteria, _objectContainer));
 
             Assert.IsFalse(records.Count > MAX_RECORDS_TO_DELETE, $"There are {records.Count} entities while the delete operation is constrained to at most {MAX_RECORDS_TO_DELETE} to prevent unintentional mass delete operation because of invalid criteria.");
 
@@ -181,7 +184,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
         public DataCollection<Entity> ThenRecordCountExists(int amount, string entityName, Table criteria)
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
-            DataCollection<Entity> records = _crmContext.CommandProcessor.Execute(new GetRecordsCommand(_crmContext, entityName, criteria));
+            DataCollection<Entity> records = _crmContext.CommandProcessor.Execute(new GetRecordsCommand(_crmContext, entityName, criteria, _objectContainer));
             Assert.AreEqual(amount, records.Count, $"When looking for records for {entityName}, expected {amount}, but found {records.Count} records");
             return records;
         }

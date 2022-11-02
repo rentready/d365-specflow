@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using BoDi;
+using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 
 namespace RR.Dynamics365.SpecFlow.Hooks
@@ -12,11 +13,11 @@ namespace RR.Dynamics365.SpecFlow.Hooks
     {
         private readonly Vermaat.Crm.Specflow.Hooks _vermaatHooks;
 
-        public VermaatHooksAdapter(SeleniumTestingContext seleniumTestingContext, CrmTestingContext crmContext,
-                     FeatureContext featureContext, ScenarioContext scenarioContext)
+        public VermaatHooksAdapter(CrmTestingContext crmContext,
+                     FeatureContext featureContext, ScenarioContext scenarioContext, IObjectContainer objectContainer)
 
         {
-            _vermaatHooks = new Vermaat.Crm.Specflow.Hooks(seleniumTestingContext, crmContext, featureContext, scenarioContext);
+            _vermaatHooks = new Vermaat.Crm.Specflow.Hooks(crmContext, featureContext, scenarioContext, objectContainer);
         }
 
         /// <summary>

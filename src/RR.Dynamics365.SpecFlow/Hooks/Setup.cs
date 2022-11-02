@@ -33,7 +33,6 @@ namespace RR.Dynamics365.SpecFlow.Hooks
         {
             _objectContainer.RegisterInstanceAs<IObjectConverter>(_globalContainer.Resolve<IObjectConverter>());
             _objectContainer.RegisterInstanceAs<IQueryWithConditionOperatorsHelper>(_globalContainer.Resolve<IQueryWithConditionOperatorsHelper>());
-            _objectContainer.RegisterInstanceAs<Vermaat.Crm.Specflow.ICrmTestingContext>(context);
         }
 
         [BeforeTestRun]

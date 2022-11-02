@@ -15,16 +15,20 @@ namespace RR.Dynamics365.SpecFlow.Steps
         private readonly CrmTestingContext _crmContext;
         private readonly SeleniumTestingContext _seleniumContext;
         private readonly IObjectContainer _objectContainer;
-        private readonly CommandAction _action;
+        private CommandAction _action;
 
-        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer, ScenarioContext scenarioContext)
+        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;
             _objectContainer = objectContainer;
-            _action = scenarioContext.StepContext.StepInfo.StepDefinitionType == TechTalk.SpecFlow.Bindings.StepDefinitionType.Given ? CommandAction.ForceApi : CommandAction.Default;
         }
 
+        [BeforeStep]
+        public void BeforeStep(ScenarioContext scenarioContext)
+        {
+            _action = scenarioContext.StepContext.StepInfo.StepDefinitionType == TechTalk.SpecFlow.Bindings.StepDefinitionType.Given ? CommandAction.ForceApi : CommandAction.Default;
+        }
 
         #region Given
 

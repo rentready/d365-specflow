@@ -33,7 +33,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
             _seleniumContext.GetBrowser().App.Client.ClickCommand(buttonName);
         }
 
-        [Then("(.*)'s form has the following form state")]
+        [Then("I expect (.*)'s form has the following form state")]
         public void ThenFieldsAreVisibleOnForm(string alias, Table table)
         {
             var aliasRef = _crmContext.RecordCache[alias];
@@ -43,33 +43,33 @@ namespace RR.Dynamics365.SpecFlow.Steps
 
         }
 
-        [Then(@"(.*) has the following form notifications")]
+        [Then(@"I expect (.*) has the following form notifications")]
         public void ThenFormNotificationExist(string alias, Table formNotifications)
         {
             _crmContext.CommandProcessor.Execute(new AssertFormNotificationsCommand(_crmContext, _seleniumContext, alias, formNotifications));
         }
 
-        [Then(@"the following form notifications are on the current form")]
+        [Then(@"I expect the following form notifications are on the current form")]
         public void ThenCurrentFormNotificationExist(Table formNotifications)
         {
             _crmContext.CommandProcessor.Execute(new AssertFormNotificationsCommand(_crmContext, _seleniumContext, null, formNotifications));
         }
 
 
-        [Then(@"the following localized form notifications are on the current form")]
+        [Then(@"I expect the following localized form notifications are on the current form")]
         public void ThenCurrentLocalizedFormNotificationExist(Table formNotifications)
         {
             _crmContext.TableConverter.LocalizeColumn(formNotifications, Constants.SpecFlow.TABLE_FORMNOTIFICATION_MESSAGE, GlobalTestingContext.ConnectionManager.CurrentConnection.UserSettings.UILanguage);
             _crmContext.CommandProcessor.Execute(new AssertFormNotificationsCommand(_crmContext, _seleniumContext, null, formNotifications));
         }
 
-        [Then(@"the following error message appears: '(.*)'")]
+        [Then(@"I expect the following error message appears: '(.*)'")]
         public void ThenErrorAppears(string errorMessage)
         {
             //_crmContext.CommandProcessor.Execute(new AssertErrorDialogCommand(_crmContext, _seleniumContext, errorMessage));
         }
 
-        [Then("(.*)'s form has the following ribbon state")]
+        [Then("I expect (.*)'s form has the following ribbon state")]
         public void ThenFormHasRibbonItems(string alias, Table table)
         {
             _crmContext.CommandProcessor.Execute(new AssertRibbonStateCommand(_crmContext, _seleniumContext, alias, table));

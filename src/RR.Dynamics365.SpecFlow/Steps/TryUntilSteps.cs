@@ -33,7 +33,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
 
         [Given(@"within ([0-9]+) seconds ([^\s]+) has the following values")]
         [When(@"I wait within ([0-9]+) seconds ([^\s]+) has the following values")]
-        [Then(@"I expect within ([0-9]+) seconds ([^\s]+) has the following values")]
+        [Then(@"I expect within ([0-9]+) seconds, ([^\s]+) has the following values")]
         public void ThenAliasHasValues(int seconds, string alias, Table criteria)
         {
             EntityReference aliasRef = _crmContext.RecordCache[alias];
@@ -44,8 +44,8 @@ namespace RR.Dynamics365.SpecFlow.Steps
 
         [When(@"I wait within ([0-9]+) seconds a ([^\s]+) exists with the following values")]
         [When(@"I wait within ([0-9]+) seconds an ([^\s]+) exists with the following values")]
-        [Then(@"I expect within ([0-9]+) seconds a ([^\s]+) exists with the following values")]
-        [Then(@"I expect within ([0-9]+) seconds an ([^\s]+) exists with the following values")]
+        [Then(@"I expect within ([0-9]+) seconds, a ([^\s]+) exists with the following values")]
+        [Then(@"I expect within ([0-9]+) seconds, an ([^\s]+) exists with the following values")]
         public Entity ThenRecordExists(int seconds, string entityName, Table criteria)
         {
             return ThenRecordCountExists(seconds, 1, entityName, criteria)[0];

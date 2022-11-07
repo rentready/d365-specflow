@@ -91,14 +91,14 @@ namespace RR.Dynamics365.SpecFlow.Steps
             _crmContext.CommandProcessor.Execute(new MoveToNextBusinessProcessStageCommand(_crmContext, _seleniumContext, alias));
         }
 
-        [Given(@"An (.*) is updated with the following values")]
-        [Given(@"A (.*) is updated with the following values")]
+        [Given(@"an (.*) is updated with the following values")]
+        [Given(@"a (.*) is updated with the following values")]
         [When(@"I update (.*) with the following values")]
         public void WhenAliasIsUpdated(string alias, Table criteria)
         {
             EntityReference aliasRef = _crmContext.RecordCache[alias];
             _crmContext.TableConverter.ConvertTable(aliasRef.LogicalName, criteria);
-            _crmContext.CommandProcessor.Execute(new UpdateRecordCommand(_crmContext, _seleniumContext, aliasRef, criteria));
+            _crmContext.CommandProcessor.Execute(new UpdateRecordCommand(_crmContext, _seleniumContext, aliasRef, criteria), _action);
         }
 
         [When(@"I wait when all asynchronous processes for (.*) are finished")]
@@ -188,7 +188,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
             ThenRecordCountExists(0, entityName, criteria);
         }
 
-        [Then(@"I expect no ([0-9]+) ([^\s]+) records exist with the following values")]
+        [Then(@"I expect ([0-9]+) ([^\s]+) records exist with the following values")]
         public DataCollection<Entity> ThenRecordCountExists(int amount, string entityName, Table criteria)
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
@@ -197,8 +197,8 @@ namespace RR.Dynamics365.SpecFlow.Steps
             return records;
         }
 
-        [Then(@"I expect no a ([^\s]+) named (.*) exists with the following values")]
-        [Then(@"I expect no an ([^\s]+) named (.*) exists with the following values")]
+        [Then(@"I expect a ([^\s]+) named (.*) exists with the following values")]
+        [Then(@"I expect an ([^\s]+) named (.*) exists with the following values")]
         public Entity ThenRecordExistsAndGiveAlias(string entityName, string alias, Table criteria)
         {
             var records = ThenRecordCountExists(1, entityName, criteria);
@@ -207,14 +207,14 @@ namespace RR.Dynamics365.SpecFlow.Steps
         }
 
 
-        [Then(@"I expect no (.*) has the following connected records of type ([^\s]+)")]
+        [Then(@"I expect (.*) has the following connected records of type ([^\s]+)")]
         public void ThenRecordsAreConnectedViaNN(string alias, string relatedEntityName, Table records)
         {
             _crmContext.CommandProcessor.Execute(new AssertNNRelationshipCommand(_crmContext, alias, relatedEntityName, records));
         }
 
-        [Given(@"I expect no that (.*)'s (.*) is named (.*)")]
-        [Then(@"I expect no (.*)'s (.*) is named (.*)")]
+        [Given(@"that (.*)'s (.*) is named (.*)")]
+        [Then(@"I expect (.*)'s (.*) is named (.*)")]
         public void ThenAliasFieldIsAliased(string alias, string lookupField, string lookupAlias)
         {
             _crmContext.CommandProcessor.Execute(new SetLookupAsAliasCommand(_crmContext, alias, lookupField, lookupAlias));

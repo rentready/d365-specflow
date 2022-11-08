@@ -42,6 +42,13 @@ namespace RR.Dynamics365.SpecFlow.Steps
             _crmContext.RecordCache.Add(alias, entity, false);
         }
 
+        [Given(@"entities ([^\s]+) exist with the following values")]
+        public void GivenExistingEntitiesCollectionWithValues(string entityName, Table entities)
+        {
+            ProcessEntitiesCollectionWithValues(entityName, entities, (string entityName, string alias, Table criteria) =>
+                GivenExistingWithValues(entityName, alias, criteria));
+        }
+
         [Given(@"a ([^\s]+) named (.*) created with the following values")]
         [Given(@"an ([^\s]+) named (.*) created with the following values")]
         [When(@"I create a ([^\s]+) named (.*) with the following values")]
@@ -56,6 +63,12 @@ namespace RR.Dynamics365.SpecFlow.Steps
         [When(@"I create entities ([^\s]+) with the following values")]
         public void GivenEntitiesCollectionWithValues(string entityName, Table entities)
         {
+            ProcessEntitiesCollectionWithValues(entityName, entities, (string entityName, string alias, Table criteria) =>
+                GivenEntityWithValues(entityName, alias, criteria));
+        }
+
+        private void ProcessEntitiesCollectionWithValues(string entityName, Table entities, Func<string, string, Table, void> func)
+        {
             Assert.IsTrue(entities.Header.Contains(ALIAS_COLUMN), $"Add a column with name '{ALIAS_COLUMN}' to the table of the step and fulfill it with aliases.");
             foreach (var row in entities.Rows)
             {
@@ -68,7 +81,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
                         criteria.AddRow(columnName, value);
                     }
                 }
-                GivenEntityWithValues(entityName, row[ALIAS_COLUMN], criteria);
+                func(entityName, row[ALIAS_COLUMN], criteria);
             }
         }
 

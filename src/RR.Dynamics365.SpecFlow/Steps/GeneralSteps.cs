@@ -67,7 +67,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
                 GivenEntityWithValues(entityName, alias, criteria));
         }
 
-        private void ProcessEntitiesCollectionWithValues(string entityName, Table entities, Func<string, string, Table, void> func)
+        private void ProcessEntitiesCollectionWithValues(string entityName, Table entities, Action<string, string, Table> func)
         {
             Assert.IsTrue(entities.Header.Contains(ALIAS_COLUMN), $"Add a column with name '{ALIAS_COLUMN}' to the table of the step and fulfill it with aliases.");
             foreach (var row in entities.Rows)

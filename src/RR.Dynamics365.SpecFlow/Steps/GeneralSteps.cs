@@ -12,6 +12,8 @@ namespace RR.Dynamics365.SpecFlow.Steps
     [DeploymentItem("DefaultData.xml")]
     public class GeneralSteps
     {
+        private const string ALIAS_COLUMN = "Alias";
+        private const string NULL_VALUE = "n/a";
         private readonly CrmTestingContext _crmContext;
         private readonly SeleniumTestingContext _seleniumContext;
         private readonly IObjectContainer _objectContainer;
@@ -48,6 +50,26 @@ namespace RR.Dynamics365.SpecFlow.Steps
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
             _crmContext.CommandProcessor.Execute(new CreateRecordCommand(_crmContext, _seleniumContext, entityName, criteria, alias), _action);
+        }
+
+        [Given(@"entities ([^\s]+) created with the following values")]
+        [When(@"I create entities ([^\s]+) with the following values")]
+        public void GivenEntitiesCollectionWithValues(string entityName, Table entities)
+        {
+            Assert.IsTrue(entities.Header.Contains(ALIAS_COLUMN), $"Add a column with name '{ALIAS_COLUMN}' to the table of the step and fulfill it with aliases.");
+            foreach (var row in entities.Rows)
+            {
+                var criteria = new Table(Constants.SpecFlow.TABLE_KEY, Constants.SpecFlow.TABLE_VALUE);
+                foreach (var columnName in row.Keys)
+                {
+                    var value = row[columnName];
+                    if (value.ToLower() != NULL_VALUE && columnName != ALIAS_COLUMN)
+                    {
+                        criteria.AddRow(columnName, value);
+                    }
+                }
+                GivenEntityWithValues(entityName, row[ALIAS_COLUMN], criteria);
+            }
         }
 
         [Given(@"(.*) has the process stage (.*)")]

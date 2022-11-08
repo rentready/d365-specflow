@@ -10,6 +10,7 @@ using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
 using Vermaat.Crm.Specflow.EasyRepro;
 using Constants = Vermaat.Crm.Specflow.Constants;
+using GetRecordsCommand = RR.Dynamics365.SpecFlow.Commands.GetRecordsCommand;
 
 namespace RR.Dynamics365.SpecFlow.Steps
 {

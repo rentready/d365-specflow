@@ -1,7 +1,9 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using BoDi;
+using Microsoft.Xrm.Sdk;
 using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
+using GetRecordsCommand = RR.Dynamics365.SpecFlow.Commands.GetRecordsCommand;
 
 namespace RR.Dynamics365.SpecFlow.Steps
 {
@@ -10,11 +12,13 @@ namespace RR.Dynamics365.SpecFlow.Steps
     {
         private readonly CrmTestingContext _crmContext;
         private readonly SeleniumTestingContext _seleniumContext;
+        private readonly IObjectContainer _objectContainer;
 
-        public TryUntilSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext)
+        public TryUntilSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;
+            _objectContainer = objectContainer;
         }
 
         #region Given
@@ -64,7 +68,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
         {
             _crmContext.TableConverter.ConvertTable(entityName, criteria);
 
-            return TryUntil<GetRecordsCommand, DataCollection<Entity>>(new GetRecordsCommand(_crmContext, entityName, criteria), seconds,
+            return TryUntil<GetRecordsCommand, DataCollection<Entity>>(new GetRecordsCommand(_crmContext, entityName, criteria, _objectContainer), seconds,
                 r => r.Count == amount,
                 r => $"When looking for records for {entityName}, expected {amount}, but found {r.Count} records");
         }

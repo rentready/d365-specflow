@@ -26,19 +26,19 @@ namespace RR.Dynamics365.SpecFlow.Hooks
         [BeforeScenario]
         public void FixXPaths() => _vermaatHooks.FixXPaths();
 
-        [BeforeScenario("API")]
+        [BeforeScenario("Target:API")]
         public void APISetup() => _vermaatHooks.APISetup();
 
-        [BeforeScenario("Chrome")]
+        [BeforeScenario("Target:Chrome")]
         public void ChromeSetup() => _vermaatHooks.ChromeSetup();
 
-        [BeforeScenario("Edge")]
+        [BeforeScenario("Target:Edge")]
         public void EdgeSetup() => _vermaatHooks.EdgeSetup();
 
-        [BeforeScenario("Firefox")]
+        [BeforeScenario("Target:Firefox")]
         public void FirefoxSetup() => _vermaatHooks.FirefoxSetup();
 
-        [BeforeScenario("IE")]
+        [BeforeScenario("Target:IE")]
         public void IESetup() => _vermaatHooks.IESetup();
 
         [BeforeScenario("ForceAPI")]

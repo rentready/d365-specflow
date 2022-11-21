@@ -9,6 +9,7 @@ using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
 using Vermaat.Crm.Specflow.EasyRepro;
+using Vermaat.Crm.Specflow.EasyRepro.Commands;
 using Constants = Vermaat.Crm.Specflow.Constants;
 using GetRecordsCommand = RR.Dynamics365.SpecFlow.Commands.GetRecordsCommand;
 
@@ -31,7 +32,7 @@ namespace RR.Dynamics365.SpecFlow.Steps
         [When(@"I click button ""(.*)""")]
         public void WhenIClickButton(string buttonName)
         {
-            _seleniumContext.GetBrowser().App.Client.ClickCommand(buttonName);
+            _seleniumContext.GetBrowser().LastFormData.CommandBar.ClickButton(buttonName);
         }
 
         [Then("I expect (.*)'s form has the following form state")]

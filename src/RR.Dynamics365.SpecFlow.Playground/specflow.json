@@ -1,4 +1,7 @@
 {
+  "pluginparameters": {
+    "variantkey": "Target"
+  },
   "stepAssemblies": [
     {
       "assembly": "RR.Dynamics365.SpecFlow"

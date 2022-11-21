@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using RR.Dynamics365.SpecFlow.Helpers;
 using System.Drawing;
+using Vermaat.Crm.Specflow;
 
 namespace RR.Dynamics365.SpecFlow.Hooks
 {
@@ -23,13 +24,14 @@ namespace RR.Dynamics365.SpecFlow.Hooks
             _globalContainer = new ObjectContainer();
         }
 
-        public Setup(IObjectContainer objectContainer)
+        public Setup(IObjectContainer objectContainer, Vermaat.Crm.Specflow.CrmTestingContext context)
         {
             _objectContainer = objectContainer;
+            _objectContainer.RegisterInstanceAs<ICrmTestingContext>(context);
         }
 
         [BeforeScenario]
-        public void BeforeScenario(Vermaat.Crm.Specflow.CrmTestingContext context)
+        public void BeforeScenario(IObjectContainer objectContainer)
         {
             _objectContainer.RegisterInstanceAs<IObjectConverter>(_globalContainer.Resolve<IObjectConverter>());
             _objectContainer.RegisterInstanceAs<IQueryWithConditionOperatorsHelper>(_globalContainer.Resolve<IQueryWithConditionOperatorsHelper>());
@@ -38,7 +40,7 @@ namespace RR.Dynamics365.SpecFlow.Hooks
         [BeforeTestRun]
         public static void InitializeGlobalInstances()
         {
-            _globalContainer.RegisterTypeAs<ObjectConverter, IObjectConverter>();
+            _globalContainer.RegisterTypeAs<Helpers.ObjectConverter, IObjectConverter>();
             _globalContainer.RegisterTypeAs<QueryWithConditionOperatorsHelper, IQueryWithConditionOperatorsHelper>();
         }
     }

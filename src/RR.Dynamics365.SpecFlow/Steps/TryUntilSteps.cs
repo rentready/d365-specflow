@@ -10,11 +10,11 @@ namespace RR.Dynamics365.SpecFlow.Steps
     [Binding]
     public class TryUntilSteps
     {
-        private readonly CrmTestingContext _crmContext;
-        private readonly SeleniumTestingContext _seleniumContext;
+        private readonly ICrmTestingContext _crmContext;
+        private readonly ISeleniumTestingContext _seleniumContext;
         private readonly IObjectContainer _objectContainer;
 
-        public TryUntilSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
+        public TryUntilSteps(ICrmTestingContext crmContext, ISeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;

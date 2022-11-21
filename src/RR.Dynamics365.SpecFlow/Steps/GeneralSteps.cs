@@ -14,12 +14,12 @@ namespace RR.Dynamics365.SpecFlow.Steps
     {
         private const string ALIAS_COLUMN = "Alias";
         private const string NULL_VALUE = "n/a";
-        private readonly CrmTestingContext _crmContext;
-        private readonly SeleniumTestingContext _seleniumContext;
+        private readonly ICrmTestingContext _crmContext;
+        private readonly ISeleniumTestingContext _seleniumContext;
         private readonly IObjectContainer _objectContainer;
         private CommandAction _action;
 
-        public GeneralSteps(CrmTestingContext crmContext, SeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
+        public GeneralSteps(ICrmTestingContext crmContext, ISeleniumTestingContext seleniumContext, IObjectContainer objectContainer)
         {
             _crmContext = crmContext;
             _seleniumContext = seleniumContext;

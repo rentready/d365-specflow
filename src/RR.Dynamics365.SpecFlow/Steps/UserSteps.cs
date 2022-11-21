@@ -13,11 +13,11 @@ namespace RR.Dynamics365.SpecFlow.Steps
     [Binding]
     public class UserSteps
     {
-        private readonly CrmTestingContext _crmContext;
-        private readonly SeleniumTestingContext _selenumContext;
+        private readonly ICrmTestingContext _crmContext;
+        private readonly ISeleniumTestingContext _selenumContext;
         private readonly UserProfileHandler _userProfileHandler;
 
-        public UserSteps(CrmTestingContext crmContext, SeleniumTestingContext selenumContext, UserProfileHandler userProfileHandler)
+        public UserSteps(ICrmTestingContext crmContext, ISeleniumTestingContext selenumContext, UserProfileHandler userProfileHandler)
         {
             _crmContext = crmContext;
             _selenumContext = selenumContext;

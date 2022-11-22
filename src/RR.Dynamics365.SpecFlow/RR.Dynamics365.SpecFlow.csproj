@@ -10,7 +10,7 @@
 
   <ItemGroup>
 	<PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-	<PackageReference Include="RentReady.Vermaat.Crm.Specflow" Version="3.3.40-rentready.20" />
+	<PackageReference Include="RentReady.Vermaat.Crm.Specflow" Version="3.3.40-rentready.24" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
     <PackageReference Include="SpecFlow.Contrib.Variants" Version="3.9.74" />
     <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />

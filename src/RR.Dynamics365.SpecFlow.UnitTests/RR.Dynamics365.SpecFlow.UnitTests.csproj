@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="FakeItEasy" Version="7.3.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="RentReady.FakeXrmEasy.9.Net" Version="1.58.1-prerelease.2" />
+    <PackageReference Include="RentReady.FakeXrmEasy.9.Net" Version="1.58.1-prerelease.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,7 +24,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RR.Dynamics365.Model\RR.Dynamics365.Model.csproj" />
     <ProjectReference Include="..\RR.Dynamics365.SpecFlow\RR.Dynamics365.SpecFlow.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DefaultData.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LocalizedTexts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

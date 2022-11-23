@@ -20,8 +20,10 @@ namespace RR.Dynamics365.SpecFlow.UnitTests.Steps
         public GeneralStepsTests()
         {
             var conn = new FakeCrmConnection("Fake", _context);
+            var service = conn.Service;
             GlobalTestingContext.ConnectionManager.SetAdminConnection(conn);
             GlobalTestingContext.ConnectionManager.SetCurrentConnection(conn);
+            conn.Service = service;
             _container = new ObjectContainer();
             _container.RegisterInstanceAs<ScenarioContext>(CreateScenarioContext());
             _container.RegisterTypeAs<CrmTestingContext, ICrmTestingContext>();

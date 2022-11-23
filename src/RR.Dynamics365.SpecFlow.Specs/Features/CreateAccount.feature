@@ -7,6 +7,9 @@ Scenario: Should Create an Account with name Awersome Account and Default number
 	Given an existing account named Altername with the following values is available within 0 seconds
 		| Property | Value            |
 		| name     | Awersome Account |
+	Given an account named Altername2 exists with the following values
+		| Property | Value            |
+		| name     | Awersome Account |
 	Then I expect an account exists with the following values
 		| Property          | Value            |
 		| name              | Awersome Account |
@@ -40,3 +43,13 @@ Scenario: Should map lookup fields by an entity's alias
 		| Property         | Value            |
 		| name             | Awersome Account |
 		| primarycontactid | MainContact      |
+
+Scenario: Should create a list of accounts
+	Given entities account created with the following values
+		| Alias | name             |
+		| Acc1  | Awersome Account |
+		| Acc2  | Bad Account      |
+	Given entities account exist with the following values
+		| Alias  | name             |
+		| Acc1.1 | Awersome Account |
+		| Acc2.1 | Bad Account      |

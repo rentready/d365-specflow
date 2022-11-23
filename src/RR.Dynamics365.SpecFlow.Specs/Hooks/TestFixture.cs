@@ -22,8 +22,12 @@ namespace RR.Dynamics365.SpecFlow.Specs.Hooks
         public void BeforeScenarioRun(IObjectContainer objectContainer)
         {
             var conn = new FakeCrmConnection("Fake", _context);
+
+            var service = conn.Service;
             GlobalTestingContext.ConnectionManager.SetAdminConnection(conn);
             GlobalTestingContext.ConnectionManager.SetCurrentConnection(conn);
+            conn.Service = service;
+            
             objectContainer.RegisterTypeAs<CrmTestingContext, ICrmTestingContext>();
             objectContainer.RegisterInstanceAs<ISeleniumTestingContext>(A.Fake<ISeleniumTestingContext>());
 

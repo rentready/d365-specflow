@@ -126,11 +126,20 @@ this.ScenarioInitialize(scenarioInfo);
                 table3.AddRow(new string[] {
                             "name",
                             "Awersome Account"});
-                table3.AddRow(new string[] {
+#line 10
+ testRunner.Given("an account named Altername2 exists with the following values", ((string)(null)), table3, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table4.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+                table4.AddRow(new string[] {
                             "numberofemployees",
                             "10"});
-#line 10
- testRunner.Then("I expect an account exists with the following values", ((string)(null)), table3, "Then ");
+#line 13
+ testRunner.Then("I expect an account exists with the following values", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -144,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should Update an Account name", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -154,23 +163,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Property",
-                            "Value"});
-                table4.AddRow(new string[] {
-                            "name",
-                            "Awersome Account"});
-#line 16
- testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table4, "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Property",
                             "Value"});
                 table5.AddRow(new string[] {
                             "name",
-                            "Bad Account"});
+                            "Awersome Account"});
 #line 19
- testRunner.When("I update MainAccount with the following values", ((string)(null)), table5, "When ");
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table5, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Property",
@@ -179,7 +179,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "name",
                             "Bad Account"});
 #line 22
- testRunner.Then("I expect an account exists with the following values", ((string)(null)), table6, "Then ");
+ testRunner.When("I update MainAccount with the following values", ((string)(null)), table6, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table7.AddRow(new string[] {
+                            "name",
+                            "Bad Account"});
+#line 25
+ testRunner.Then("I expect an account exists with the following values", ((string)(null)), table7, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -193,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should map lookup fields by an entity\'s primary name", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 26
+#line 29
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -203,26 +212,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Property",
-                            "Value"});
-                table7.AddRow(new string[] {
-                            "fullname",
-                            "John Snow"});
-#line 27
- testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table7, "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Property",
                             "Value"});
                 table8.AddRow(new string[] {
-                            "name",
-                            "Awersome Account"});
-                table8.AddRow(new string[] {
-                            "primarycontactid",
+                            "fullname",
                             "John Snow"});
 #line 30
- testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table8, "Given ");
+ testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table8, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table9.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+                table9.AddRow(new string[] {
+                            "primarycontactid",
+                            "John Snow"});
+#line 33
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table9, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -236,7 +245,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should map lookup fields by an entity\'s alias", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -246,26 +255,72 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Property",
-                            "Value"});
-                table9.AddRow(new string[] {
-                            "fullname",
-                            "John Snow"});
-#line 36
- testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table9, "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Property",
                             "Value"});
                 table10.AddRow(new string[] {
+                            "fullname",
+                            "John Snow"});
+#line 39
+ testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table10, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table11.AddRow(new string[] {
                             "name",
                             "Awersome Account"});
-                table10.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "primarycontactid",
                             "MainContact"});
-#line 39
- testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table10, "Given ");
+#line 42
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table11, "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Should create a list of accounts")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateAccount")]
+        [Xunit.TraitAttribute("Description", "Should create a list of accounts")]
+        public void ShouldCreateAListOfAccounts()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should create a list of accounts", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 47
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Alias",
+                            "name"});
+                table12.AddRow(new string[] {
+                            "Acc1",
+                            "Awersome Account"});
+                table12.AddRow(new string[] {
+                            "Acc2",
+                            "Bad Account"});
+#line 48
+ testRunner.Given("entities account created with the following values", ((string)(null)), table12, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Alias",
+                            "name"});
+                table13.AddRow(new string[] {
+                            "Acc1.1",
+                            "Awersome Account"});
+                table13.AddRow(new string[] {
+                            "Acc2.1",
+                            "Bad Account"});
+#line 52
+ testRunner.Given("entities account exist with the following values", ((string)(null)), table13, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -80,14 +80,17 @@ namespace RR.Dynamics365.SpecFlow.Specs.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Should Create an Account")]
+        [Xunit.SkippableFactAttribute(DisplayName="Should Create an Account with name Awersome Account and Default numberofemployees" +
+            " = 10")]
         [Xunit.TraitAttribute("FeatureTitle", "CreateAccount")]
-        [Xunit.TraitAttribute("Description", "Should Create an Account")]
-        public void ShouldCreateAnAccount()
+        [Xunit.TraitAttribute("Description", "Should Create an Account with name Awersome Account and Default numberofemployees" +
+            " = 10")]
+        public void ShouldCreateAnAccountWithNameAwersomeAccountAndDefaultNumberofemployees10()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should Create an Account", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should Create an Account with name Awersome Account and Default numberofemployees" +
+                    " = 10", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,6 +116,9 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "name",
                             "Awersome Account"});
+                table2.AddRow(new string[] {
+                            "numberofemployees",
+                            "10"});
 #line 7
  testRunner.Then("I expect an account exists with the following values", ((string)(null)), table2, "Then ");
 #line hidden

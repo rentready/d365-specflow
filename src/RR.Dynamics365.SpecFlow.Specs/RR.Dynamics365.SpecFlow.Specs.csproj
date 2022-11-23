@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="RentReady.FakeXrmEasy.9.Net" Version="1.58.1-prerelease.6" />
+    <PackageReference Include="RentReady.FakeXrmEasy.9.Net" Version="1.58.1-prerelease.7" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
     <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
     <PackageReference Include="xunit" Version="2.4.2" />

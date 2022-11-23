@@ -22,3 +22,21 @@ Scenario: Should Update an Account name
 	Then I expect an account exists with the following values
 		| Property          | Value       |
 		| name              | Bad Account |
+
+Scenario: Should map lookup fields by an entity's primary name
+	Given a contact named MainContact created with the following values
+		| Property | Value     |
+		| fullname | John Snow |
+	Given an account named MainAccount created with the following values
+		| Property         | Value            |
+		| name             | Awersome Account |
+		| primarycontactid | John Snow        |
+
+Scenario: Should map lookup fields by an entity's alias
+	Given a contact named MainContact created with the following values
+		| Property | Value     |
+		| fullname | John Snow |
+	Given an account named MainAccount created with the following values
+		| Property         | Value            |
+		| name             | Awersome Account |
+		| primarycontactid | MainContact      |

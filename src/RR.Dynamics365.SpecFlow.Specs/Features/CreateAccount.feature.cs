@@ -185,6 +185,92 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Should map lookup fields by an entity\'s primary name")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateAccount")]
+        [Xunit.TraitAttribute("Description", "Should map lookup fields by an entity\'s primary name")]
+        public void ShouldMapLookupFieldsByAnEntitysPrimaryName()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should map lookup fields by an entity\'s primary name", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 26
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table7.AddRow(new string[] {
+                            "fullname",
+                            "John Snow"});
+#line 27
+ testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table7, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table8.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+                table8.AddRow(new string[] {
+                            "primarycontactid",
+                            "John Snow"});
+#line 30
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table8, "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Should map lookup fields by an entity\'s alias")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateAccount")]
+        [Xunit.TraitAttribute("Description", "Should map lookup fields by an entity\'s alias")]
+        public void ShouldMapLookupFieldsByAnEntitysAlias()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should map lookup fields by an entity\'s alias", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 35
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table9.AddRow(new string[] {
+                            "fullname",
+                            "John Snow"});
+#line 36
+ testRunner.Given("a contact named MainContact created with the following values", ((string)(null)), table9, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table10.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+                table10.AddRow(new string[] {
+                            "primarycontactid",
+                            "MainContact"});
+#line 39
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table10, "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

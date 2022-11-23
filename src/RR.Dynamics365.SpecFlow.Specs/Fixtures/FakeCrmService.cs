@@ -122,7 +122,7 @@ namespace RR.Dynamics365.SpecFlow.Specs.Fixtures
 
         public void Update(Entity entity)
         {
-            throw new NotImplementedException();
+            _service.Update(entity);
         }
 
         private OrganizationResponse ExecuteRequest(OrganizationRequest request)

@@ -116,11 +116,70 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "name",
                             "Awersome Account"});
-                table2.AddRow(new string[] {
+#line 7
+ testRunner.Given("an existing account named Altername with the following values is available within" +
+                        " 0 seconds", ((string)(null)), table2, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+                table3.AddRow(new string[] {
                             "numberofemployees",
                             "10"});
-#line 7
- testRunner.Then("I expect an account exists with the following values", ((string)(null)), table2, "Then ");
+#line 10
+ testRunner.Then("I expect an account exists with the following values", ((string)(null)), table3, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Should Update an Account name")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateAccount")]
+        [Xunit.TraitAttribute("Description", "Should Update an Account name")]
+        public void ShouldUpdateAnAccountName()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should Update an Account name", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 15
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table4.AddRow(new string[] {
+                            "name",
+                            "Awersome Account"});
+#line 16
+ testRunner.Given("an account named MainAccount created with the following values", ((string)(null)), table4, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table5.AddRow(new string[] {
+                            "name",
+                            "Bad Account"});
+#line 19
+ testRunner.When("I update MainAccount with the following values", ((string)(null)), table5, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Property",
+                            "Value"});
+                table6.AddRow(new string[] {
+                            "name",
+                            "Bad Account"});
+#line 22
+ testRunner.Then("I expect an account exists with the following values", ((string)(null)), table6, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

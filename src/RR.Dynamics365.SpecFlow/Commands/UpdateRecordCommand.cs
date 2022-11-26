@@ -50,7 +50,29 @@ namespace RR.Dynamics365.SpecFlow.Commands
                     ? _seleniumContext.GetBrowser().LastFormData 
                     : _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
                 formData.FillForm(_crmContext, _criteria);
-                formData.Save(true);
+                try
+                {
+                    formData.Save(true);
+                }
+                catch (TestExecutionException ex)
+                {
+                    if (ex.ErrorCode == Constants.ErrorCodes.FORM_SAVE_FAILED)
+                    {
+                        Console.WriteLine(ex.Message);
+                        HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
+                        _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                        formData.FillForm(_crmContext, _criteria);
+                        formData.Save(true);
+                    }
+                }
+                catch (OpenQA.Selenium.ElementNotInteractableException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
+                    _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                    formData.FillForm(_crmContext, _criteria);
+                    formData.Save(true);
+                }
             }
         }
     }

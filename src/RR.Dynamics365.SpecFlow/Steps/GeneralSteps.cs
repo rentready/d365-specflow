@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow;
 using Vermaat.Crm.Specflow.Commands;
 using GetRecordsCommand = RR.Dynamics365.SpecFlow.Commands.GetRecordsCommand;
+using UpdateRecordCommand = RR.Dynamics365.SpecFlow.Commands.UpdateRecordCommand;
 
 namespace RR.Dynamics365.SpecFlow.Steps
 {

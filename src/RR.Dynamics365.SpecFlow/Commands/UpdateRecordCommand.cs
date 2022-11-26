@@ -46,21 +46,28 @@ namespace RR.Dynamics365.SpecFlow.Commands
             }
             else
             {
-                var formData = _seleniumContext.GetBrowser().LastFormData?.GetRecordId() == _toUpdate.Id 
-                    ? _seleniumContext.GetBrowser().LastFormData 
-                    : _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
+                FormData formData;
+                if (_seleniumContext.GetBrowser().LastFormData?.GetRecordId() == _toUpdate.Id)
+                {
+                    formData = _seleniumContext.GetBrowser().LastFormData;
+                }
+                else
+                {
+                    try
+                    {
+                        formData = _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
+                    }
+                    catch (OpenQA.Selenium.ElementNotInteractableException ex)
+                    {
+                        Console.WriteLine("Failed to open record for an Update command.");
+                        Console.WriteLine(ex.Message);
+                        HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
+                        _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                        formData = _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
+                    }
+                }
 
-                try
-                {
-                    formData.FillForm(_crmContext, _criteria);
-                }
-                catch (OpenQA.Selenium.ElementNotInteractableException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
-                    _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
-                    formData.FillForm(_crmContext, _criteria);
-                }
+                formData.FillForm(_crmContext, _criteria);
 
                 try
                 {

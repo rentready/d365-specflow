@@ -49,7 +49,19 @@ namespace RR.Dynamics365.SpecFlow.Commands
                 var formData = _seleniumContext.GetBrowser().LastFormData.GetRecordId() == _toUpdate.Id 
                     ? _seleniumContext.GetBrowser().LastFormData 
                     : _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
-                formData.FillForm(_crmContext, _criteria);
+
+                try
+                {
+                    formData.FillForm(_crmContext, _criteria);
+                }
+                catch (OpenQA.Selenium.ElementNotInteractableException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
+                    _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                    formData.FillForm(_crmContext, _criteria);
+                }
+
                 try
                 {
                     formData.Save(true);
@@ -64,14 +76,6 @@ namespace RR.Dynamics365.SpecFlow.Commands
                         formData.FillForm(_crmContext, _criteria);
                         formData.Save(true);
                     }
-                }
-                catch (OpenQA.Selenium.ElementNotInteractableException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
-                    _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
-                    formData.FillForm(_crmContext, _criteria);
-                    formData.Save(true);
                 }
             }
         }

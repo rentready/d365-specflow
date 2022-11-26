@@ -46,7 +46,7 @@ namespace RR.Dynamics365.SpecFlow.Commands
             }
             else
             {
-                var formData = _seleniumContext.GetBrowser().LastFormData.GetRecordId() == _toUpdate.Id 
+                var formData = _seleniumContext.GetBrowser().LastFormData?.GetRecordId() == _toUpdate.Id 
                     ? _seleniumContext.GetBrowser().LastFormData 
                     : _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
 

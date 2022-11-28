@@ -4,6 +4,8 @@ using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow.EasyRepro;
 using Vermaat.Crm.Specflow.Commands;
 using Vermaat.Crm.Specflow;
+using RR.Dynamics365.SpecFlow.Helpers;
+using ObjectConverter = Vermaat.Crm.Specflow.ObjectConverter;
 
 namespace RR.Dynamics365.SpecFlow.Commands
 {
@@ -53,18 +55,9 @@ namespace RR.Dynamics365.SpecFlow.Commands
                 }
                 else
                 {
-                    try
-                    {
-                        formData = _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
-                    }
-                    catch (OpenQA.Selenium.ElementNotInteractableException ex)
-                    {
-                        Console.WriteLine("Failed to open record for an Update command.");
-                        Console.WriteLine(ex.Message);
-                        HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
-                        _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
-                        formData = _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate));
-                    }
+                    formData = RetryPolicies.ElementNotInteractableOnOpenRecord.Execute(
+                        () => _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_toUpdate))
+                    );
                 }
 
                 formData.FillForm(_crmContext, _criteria);

@@ -4,6 +4,8 @@ using TechTalk.SpecFlow;
 using Vermaat.Crm.Specflow.EasyRepro;
 using Vermaat.Crm.Specflow.Commands;
 using Vermaat.Crm.Specflow;
+using OpenQA.Selenium;
+using RR.Dynamics365.SpecFlow.Helpers;
 
 namespace RR.Dynamics365.SpecFlow.Commands
 {
@@ -31,7 +33,7 @@ namespace RR.Dynamics365.SpecFlow.Commands
 
         protected override EntityReference ExecuteBrowser()
         {
-            var formData = _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_entityLogicalName));
+            var formData = RetryPolicies.ElementNotInteractableOnOpenRecord.Execute(() => _seleniumContext.GetBrowser().OpenRecord(new OpenFormOptions(_entityLogicalName)));
 
             var tableWithDefaults = _crmContext.RecordBuilder.AddDefaultsToTable(_entityLogicalName, _criteria);
 

@@ -16,6 +16,8 @@ namespace RR.Dynamics365.SpecFlow.Commands
         private readonly EntityReference _toUpdate;
         private readonly Table _criteria;
 
+        public event EventHandler<EventArgs>? OnFormFillStart;
+
         public UpdateRecordCommand(ICrmTestingContext crmContext, ISeleniumTestingContext seleniumContext, EntityReference toUpdate,
             Table criteria)
             : base(crmContext, seleniumContext)
@@ -60,6 +62,8 @@ namespace RR.Dynamics365.SpecFlow.Commands
                     );
                 }
 
+                OnFormFillStart?.Invoke(this, EventArgs.Empty);
+
                 formData.FillForm(_crmContext, _criteria);
 
                 try
@@ -73,6 +77,7 @@ namespace RR.Dynamics365.SpecFlow.Commands
                         Console.WriteLine(ex.Message);
                         HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
                         _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                        OnFormFillStart?.Invoke(this, EventArgs.Empty);
                         formData.FillForm(_crmContext, _criteria);
                         formData.Save(true);
                     }

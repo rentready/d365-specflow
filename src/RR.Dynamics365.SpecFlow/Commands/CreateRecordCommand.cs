@@ -15,6 +15,8 @@ namespace RR.Dynamics365.SpecFlow.Commands
         private readonly Table _criteria;
         private readonly string _alias;
 
+        public event EventHandler<EventArgs>? OnFormFillStart;
+
         public CreateRecordCommand(ICrmTestingContext crmContext, ISeleniumTestingContext seleniumContext,
             string entityLogicalName, Table criteria, string alias)
             : base(crmContext, seleniumContext)
@@ -37,6 +39,8 @@ namespace RR.Dynamics365.SpecFlow.Commands
 
             var tableWithDefaults = _crmContext.RecordBuilder.AddDefaultsToTable(_entityLogicalName, _criteria);
 
+            OnFormFillStart?.Invoke(this, EventArgs.Empty);
+
             formData.FillForm(_crmContext, tableWithDefaults);
 
             try
@@ -50,6 +54,7 @@ namespace RR.Dynamics365.SpecFlow.Commands
                     Console.WriteLine(ex.Message);
                     HelperMethods.WaitForFormLoad(_seleniumContext.GetBrowser().App.WebDriver);
                     _seleniumContext.GetBrowser().App.Client.Browser.ThinkTime(10000);
+                    OnFormFillStart?.Invoke(this, EventArgs.Empty);
                     formData.FillForm(_crmContext, tableWithDefaults);
                     formData.Save(true);
                 }
